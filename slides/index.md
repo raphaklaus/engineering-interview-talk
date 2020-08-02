@@ -13,7 +13,7 @@ marp: true
 
 This compilation is made of Q&A of interviews I've made for tech startups in Europe.
 
-I thought that it could be useful for more people, so I decided to write this talk. 
+I thought that it could be useful for more people, so I decided to write this talk.
 
 Hope you like it! Enjoy 😁
 
@@ -221,3 +221,71 @@ Better:
 ```
 
 We end up having more specific contracts that adhere perfectly for the actual class use case, making it simpler to maintain and understand.
+
+---
+
+# D - Dependency Inversion Principle
+
+> Entities must depend on abstractions not on concretions. It states that the high level module must not depend on the low level module, but they should depend on abstractions.
+
+No-go:
+
+```typescript
+  class Order {
+    save(cart: Cart, dbConnection: DBPostgreSQLAdapter): void {
+      dbConnection.table('orders').save(cart)
+    }
+  }
+```
+
+Suppose we need to change to another database adapter that uses other method signature for saving things on the database, like `dbConnection.insert('orders', cart)`, that require changes in our Order class due to some low level modification.
+
+---
+
+# D - Dependency Inversion Principle
+
+Better:
+
+```typescript
+  class Order {
+    save(cart: Cart, dbConnection: DBAdapter): void {
+      dbConnection.table('orders').save(cart)
+    }
+  }
+```
+
+Here we can see that we depend on an abstraction, so when we need to include other database adapters we don't have to change the `Order` class as the abstraction takes care of the method contract.
+
+---
+
+# Actor Model
+
+> The Actor Model is a conceptual model to deal with concurrent computation. It defines some general rules for how the system’s components should behave and interact with each other.
+    - Brian Storti
+
+So what Actors should have to be considered one?
+
+* Ability to receive and send messages asynchornously using mailboxes
+* Internal state that only the owner actor can mutate
+* It can create new actors
+* Have addresses so they can communicate with each other
+
+Popular implementation of the Actor Model is present on Erlang/Elixir (through Processes) and Akka for the JVM.
+
+---
+
+# Actor Model
+
+## Fault Tolerance
+
+Erlang, for example, introduced "Let it crash" Philosophy. It translates into not spending to much development effort on writing defensive programming but rather simply letting it crash as there will be supervisors (Actors can create Actors, remember?) responsible for restarting it with its initial state or any strategy that may fit best.
+
+## Distribution
+
+Actors can communicate with other ones by sending or receving messages. As long as the Actor is physically reachable, they can do so.
+
+This enable us to distribute Actors across the internet creating a web of working nodes that behave as one, making scaling more sane.
+
+---
+
+# Design Patterns
