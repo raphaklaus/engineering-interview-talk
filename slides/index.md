@@ -25,6 +25,8 @@ Set of principles that make software easy to maintain and extend. These concepts
 
 SOLID is an acronym where every letter signifies a specific concept.
 
+Applicable to multi-paradigms.
+
 ---
 
 # S - Single Responsability Principle
@@ -289,3 +291,96 @@ This enable us to distribute Actors across the internet creating a web of workin
 ---
 
 # Design Patterns
+
+Design Patterns are suggested solutions to common problems in software development.
+
+They are separate in categories that aim to solve specific issues.
+
+It is heavily influenced by Object-Oriented programming and most of its concepts are focusing on this paradigm.
+
+There are a lot of Design Patterns and they are usually divided into 3 categories:
+
+* Creational Patterns
+* Structural Patterns
+* Behavioral Patterns
+
+---
+
+# Design Patterns
+## Singleton (Creational Patterns)
+
+In OOP programs there is the ability to instantiate objects. Sometimes is common to have just one instance that can be accessed in any other class, like a helper class, utility, etc.
+
+For these cases, a Singleton usage is interesting because you end up having a **single instance** that is accessable anywhere else in your code, avoid having a lot of parameter passing or boilerplate code.
+
+---
+# Design Patterns
+
+## Dependency Injection (Creational Patterns)
+
+Instead of:
+
+```typescript
+  //...
+  public sendRequest(body, url): void {
+    let headers = new Headers({contentType: 'json'})
+    let http = new HTTP(headers)
+
+    let response = http.sendRequest(body, url)
+  }
+```
+
+---
+
+# Design Patterns
+
+## Dependency Injection (Creational Patterns)
+
+What about:
+
+```typescript
+  //...
+  public sendRequest(body: string, url: string, http: iHTTP): void {
+    let response = http.sendRequest(body, url)
+  }
+```
+
+We avoid boilerplate code inside `sendRequest` function making it easier to test and maintain.
+
+---
+
+# Design Patterns
+
+## Proxy (Structural Patterns)
+
+```typescript
+  class RawWavToMp3Converter implements Converter {
+    start(filePath: string): void {
+      // Do binary manipulation here in order to convert the file
+    }
+  }
+```
+
+From design point-of-view, sometimes it's not a good idea to call this class directly, because other developers can misuse that or it needs to perform additional checks like access control, caching, etc.
+
+---
+
+# Design Patterns
+
+## Proxy (Structural Patterns)
+
+You create a Proxy class that will call the raw class' methods on your behalf adhering to the **same interface.**
+
+```typescript
+  class ProxyWavToMp3Converter implements Converter {
+    /// ...
+    start(filePath: string): void {
+      if (checkAccessControl() && !isCached()) {
+        let converter = new RawWavToMp3Converter()
+        converter.start()
+      }
+    }
+  }
+```
+
+That enable us to take advantage of many things like lazy initialization.
