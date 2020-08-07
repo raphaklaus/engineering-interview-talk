@@ -384,3 +384,252 @@ You create a Proxy class that will call the raw class' methods on your behalf ad
 ```
 
 That enable us to take advantage of many things like lazy initialization.
+
+---
+
+# Design Patterns
+## Strategy (Behavioral Patterns)
+
+Enable one to build a family of algorithms, put them into separated classes and make them interchangeable through their interfaces.
+
+Imagine this scenario:
+
+```typescript
+  class Currency {
+    convert(from: string, to: string) {
+      if (from.contains('UGX') && to.contains('USD')) {
+        // Do the math...
+      }
+    }
+  }
+```
+
+Soon this function is going to be bloated and hard to maintain.
+
+---
+
+# Design Patterns
+## Strategy (Behavioral Patterns)
+
+```typescript
+  interface CurrencyCalculator {
+    convert(from: string, to: string)
+  }
+
+  class Currency {
+    private strategy: CurrencyCalculator
+    setStrategy(strategy: CurrencyCalculator) {
+      this.strategy = strategy
+    }
+
+    doConvertion() {
+      this.strategy.convert()
+    }
+  }
+```
+
+---
+
+# Design Patterns
+## Strategy (Behavioral Patterns)
+
+The big benefit of using this pattern is to detach the point of maintanance from one big method into smaller and specific classes sharing the same interface.
+
+---
+
+# Design Patterns
+## Template Method (Behavioral Patterns)
+
+Ability to define a skeleton of an algorithm in a superclass so the inherited ones can implement the specific parts.
+
+In most OOP languages this pattern implies the usage of an **abstract class**. Let's check what it is first
+
+---
+
+# Design Patterns
+## Template Method (Behavioral Patterns)
+### Abstract Classes
+
+* Can't be instantiated directly. Only it's subclasses
+* It defines methods contracts
+* Unlike Interfaces, it can have methods implementation
+
+---
+
+# Design Patterns
+## Template Method (Behavioral Patterns)
+
+```typescript
+  abstract class Wallet {
+    pay(amount: number) {
+      if (hasBalance(amount) && is2FA()) {
+        // Complete the transaction
+      }
+    }
+
+    // checks balance
+    abstract hasBalance(amount: number): boolean
+    // check if user is authorized by 2FA method
+    abstract is2FA(): boolean
+  }
+```
+
+Depending on wallet's type we can have different ways to check the balance or if the user is authenticated. So in our `pay` method we create a template algorithm that inherited classes will have to fill the blanks (AKA abstract methods)
+
+---
+
+# Design Patterns
+## Template Method (Behavioral Patterns)
+
+```typescript
+  class BitcoinWallet extends Wallet {
+    hasBalance(amount: number): boolean {
+      // Check on the keychain, blockchain, etc
+    }
+
+    is2FA(): boolean {
+      // Check if the user is using some sort of 2-factor authentication.
+    }
+  }
+```
+
+When we call `pay` method on this class, we will have the proper verification and transaction made without having to specify how to pay as this is already established on the parent abstract class.
+
+---
+
+# Testing
+
+### TDD (Test-Driven Development)
+
+The expectations are first written in the test file. Once this stage is done the test will obviously fail as there is no implementation.
+
+The developer starts implementing the algorithm until all test cases are successful.
+
+From this point on, we are safe to do any refactoring or code style adjustments may fit.
+
+---
+
+# Testing
+
+### TDD (Test-Driven Development)
+
+Pros:
+
+* Upfront code designing, expectations and interface are clear
+* Once is done, you don't need to go back to implement any test because they already exist
+* Great to use with simple or pure functions
+
+Cons:
+
+* Tests beyond unit testing becomes harder to write
+* Paradigm shift: required the team to buy into
+
+---
+
+# Testing
+
+### BDD (Behavior-Driven Development)
+
+Technique that enables one to describe software requirements in human-readable format. Ultimately, these descriptions become a live documentation that generate tests.
+
+---
+
+# Testing
+
+### BDD (Behavior-Driven Development)
+
+An example using the Gherkin syntax
+
+```gherkin
+Feature: User login
+
+Scenario: Login basic flow
+  Given I am in the /login page
+  And Have <credential_type> credentials
+  When I type these credentials
+  Then I should be redirected to the <redirected_page> page
+
+  Examples:
+  | credential_type | redirected_page |
+  |      valid      |    dashboard    |
+  |     invalid     |      login      |
+```
+
+This document is runable! 😄
+
+---
+
+# Testing
+
+## Why do we mock?
+
+```elixir
+  def book_flight(flight, user)
+    with :ok <- check_availability(flight),
+      {:ok, payment_info} <- pay(user),
+      :ok <- send_receipt(user.email, flight)
+    do
+      {:ok, flight, payment_info}
+    else
+      {:email_error, reason} -> # Passenger booked the flight 
+      # but for some reason didn't receive the email.
+      {_, reason} -> # Passenger didn't book the flight
+    end
+  end
+```
+
+Imagine you have a public function that does several things inside of it, including to have side-effects (HTTP, I/O, etc).
+
+---
+
+# Testing
+
+## Why do we mock?
+
+We don't mock because we want to know if the function is working on production, but rather to know if our expectations still the same and to prevent runtime errors.
+
+---
+
+# Domain-Driven Design (DDD)
+
+Concept that aims to model an application's code using the business language rather than generic nomenclature.
+
+Example, an application that lets investors find companies to invest.
+
+non-DDD: 
+
+```elixir
+  defmodule MyApp.User do
+    def transfer_money(company_id) do
+      # ...
+    end
+  end
+```
+
+---
+
+# Domain-Driven Design (DDD)
+
+DDD:
+
+```elixir
+  defmodule MyApp.Investor do
+    def invest(company_id) do
+      # ...
+    end
+  end
+```
+
+---
+
+# Domain-Driven Design (DDD)
+
+Pros:
+* Business team and developers speak the same language
+* As a consequence, this approach forces the dev team to fully understand the business' rules
+
+Cons:
+* If the business pivoted and some entities drastically changes, the code's artefacts may have to be renamed or repurposed.
+
+---
+
