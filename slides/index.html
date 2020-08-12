@@ -30,34 +30,34 @@
 <p>A class should have one and only one reason to change, meaning that a class should have only one job.</p>
 </blockquote>
 <p>No-go:</p>
-<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-keyword">class</span> Square {
-      area(side: int): <span class="hljs-built_in">string</span> {
-          <span class="hljs-keyword">return</span> <span class="hljs-string">`Area is: <span class="hljs-subst">${<span class="hljs-built_in">Math</span>.pow(side, <span class="hljs-number">2</span>)}</span>`</span>
-      }
+<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">class</span> Square {
+  area(side: int): <span class="hljs-built_in">string</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`Area is: <span class="hljs-subst">${<span class="hljs-built_in">Math</span>.pow(side, <span class="hljs-number">2</span>)}</span>`</span>;
   }
+}
 </span></span></foreignObject></svg></code></pre>
 <p>We are merging both formating and calculation behavior in just one method. If we need to change the message and forget some other detail, we can make the calculation stop to work.</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-class="invert" class="invert" style="--class:invert;">
 <h1>S - Single Responsability Principle</h1>
 <p>Better:</p>
-<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-keyword">class</span> Square {
-      area(side: int): int {
-          <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.pow(side, <span class="hljs-number">2</span>)
-      }
+<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">class</span> Square {
+  area(side: int): int {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.pow(side, <span class="hljs-number">2</span>);
   }
+}
 
-  <span class="hljs-keyword">class</span> AreaFormatter {
-      write(area: int): <span class="hljs-built_in">string</span> {
-          <span class="hljs-keyword">return</span> <span class="hljs-string">`Area is <span class="hljs-subst">${area}</span>`</span>
-      }
+<span class="hljs-keyword">class</span> AreaFormatter {
+  write(area: int): <span class="hljs-built_in">string</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`Area is <span class="hljs-subst">${area}</span>`</span>;
   }
+}
 
-  <span class="hljs-comment">// Instantiation, import, etc...</span>
+<span class="hljs-comment">// Instantiation, import, etc...</span>
 
-  <span class="hljs-keyword">const</span> area = square(<span class="hljs-number">2</span>)
-  areaFormatter(area)
-  <span class="hljs-comment">// &quot;Area is 4&quot;</span>
+<span class="hljs-keyword">const</span> area = square(<span class="hljs-number">2</span>);
+areaFormatter(area);
+<span class="hljs-comment">// &quot;Area is 4&quot;</span>
 </span></span></foreignObject></svg></code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-class="invert" class="invert" style="--class:invert;">
@@ -138,14 +138,14 @@
 <h1>L - Liskov Substitution Principle</h1>
 <p>In the previous example there is a condition in runtime where the subtype couldn't be correctly swapped by its superclass as the contract wouldn't match.</p>
 <p>Better:</p>
-<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-keyword">class</span> Player {
-    <span class="hljs-keyword">public</span> update(pos: Position, delta: float): Position | <span class="hljs-built_in">never</span> {
-      pos.x += x * delta
-      pos.y += x * delta
+<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">class</span> Player {
+  <span class="hljs-keyword">public</span> update(pos: Position, delta: float): Position | <span class="hljs-built_in">never</span> {
+    pos.x += x * delta;
+    pos.y += x * delta;
 
-      <span class="hljs-keyword">return</span> pos
-    }
+    <span class="hljs-keyword">return</span> pos;
   }
+}
 </span></span></foreignObject></svg></code></pre>
 <p>From the type point-of-view, now we can swap <code>Player</code> and <code>Mario</code> without problems, as both are compatible.</p>
 </section>
@@ -155,34 +155,34 @@
 <p>A client should never be forced to implement an interface that it doesn't use or clients shouldn't be forced to depend on methods they do not use.</p>
 </blockquote>
 <p>No-go:</p>
-<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-keyword">interface</span> Payment {
-    receiveCash(): <span class="hljs-built_in">void</span>
-    sendCash(): <span class="hljs-built_in">void</span>
+<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">interface</span> Payment {
+  receiveCash(): <span class="hljs-built_in">void</span>;
+  sendCash(): <span class="hljs-built_in">void</span>;
+}
+
+<span class="hljs-keyword">class</span> Rider <span class="hljs-keyword">implements</span> Payment {
+  sendCash(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-comment">// It makes sense for a rider to send money.</span>
   }
 
-  <span class="hljs-keyword">class</span> Rider <span class="hljs-keyword">implements</span> Payment {
-    sendCash(): <span class="hljs-built_in">void</span> {
-      <span class="hljs-comment">// It makes sense for a rider to send money.</span>
-    }
-
-    receiveCash(): <span class="hljs-built_in">void</span> {
-      <span class="hljs-comment">// Unused. Now our class depend on a generic implementation. That is bad.</span>
-    }
+  receiveCash(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-comment">// Unused. Now our class depend on a generic implementation. That is bad.</span>
   }
+}
 </span></span></foreignObject></svg></code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-class="invert" class="invert" style="--class:invert;">
 <h1>I - Interface Segregation Principle</h1>
 <p>Better:</p>
-<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-keyword">interface</span> RiderPayment {
-    sendCash(): <span class="hljs-built_in">void</span>
-  }
+<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">interface</span> RiderPayment {
+  sendCash(): <span class="hljs-built_in">void</span>;
+}
 
-  <span class="hljs-keyword">class</span> Rider <span class="hljs-keyword">implements</span> Payment {
-    sendCash(): <span class="hljs-built_in">void</span> {
-      <span class="hljs-comment">// It makes sense for a rider to send money.</span>
-    }
+<span class="hljs-keyword">class</span> Rider <span class="hljs-keyword">implements</span> Payment {
+  sendCash(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-comment">// It makes sense for a rider to send money.</span>
   }
+}
 </span></span></foreignObject></svg></code></pre>
 <p>We end up having more specific contracts that adhere perfectly for the actual class use case, making it simpler to maintain and understand.</p>
 </section>
@@ -192,37 +192,38 @@
 <p>Entities must depend on abstractions not on concretions. It states that the high level module must not depend on the low level module, but they should depend on abstractions.</p>
 </blockquote>
 <p>No-go:</p>
-<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-keyword">class</span> Order {
-    save(cart: Cart, dbConnection: DBPostgreSQLAdapter): <span class="hljs-built_in">void</span> {
-      dbConnection.table(<span class="hljs-string">&#x27;orders&#x27;</span>).save(cart)
-    }
+<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">class</span> Order {
+  save(cart: Cart, dbConnection: DBPostgreSQLAdapter): <span class="hljs-built_in">void</span> {
+    dbConnection.table(<span class="hljs-string">&#x27;orders&#x27;</span>).save(cart);
   }
+}
 </span></span></foreignObject></svg></code></pre>
 <p>Suppose we need to change to another database adapter that uses other method signature for saving things on the database, like <code>dbConnection.insert('orders', cart)</code>, that require changes in our Order class due to some low level modification.</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-class="invert" class="invert" style="--class:invert;">
 <h1>D - Dependency Inversion Principle</h1>
 <p>Better:</p>
-<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-keyword">class</span> Order {
-    save(cart: Cart, dbConnection: DBAdapter): <span class="hljs-built_in">void</span> {
-      dbConnection.table(<span class="hljs-string">&#x27;orders&#x27;</span>).save(cart)
-    }
+<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">class</span> Order {
+  save(cart: Cart, dbConnection: DBAdapter): <span class="hljs-built_in">void</span> {
+    dbConnection.table(<span class="hljs-string">&#x27;orders&#x27;</span>).save(cart);
   }
+}
 </span></span></foreignObject></svg></code></pre>
 <p>Here we can see that we depend on an abstraction, so when we need to include other database adapters we don't have to change the <code>Order</code> class as the abstraction takes care of the method contract.</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-marpit-fragments="4" data-class="invert" class="invert" style="--class:invert;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-class="invert" class="invert" style="--class:invert;">
 <h1>Actor Model</h1>
 <blockquote>
-<p>The Actor Model is a conceptual model to deal with concurrent computation. It defines some general rules for how the system’s components should behave and interact with each other.<br />
-- Brian Storti</p>
+<p>The Actor Model is a conceptual model to deal with concurrent computation. It defines some general rules for how the system’s components should behave and interact with each other.</p>
 </blockquote>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>- Brian Storti
+</span></span></foreignObject></svg></code></pre>
 <p>So what Actors should have to be considered one?</p>
 <ul>
-<li data-marpit-fragment="1">Ability to receive and send messages asynchornously using mailboxes</li>
-<li data-marpit-fragment="2">Internal state that only the owner actor can mutate</li>
-<li data-marpit-fragment="3">It can create new actors</li>
-<li data-marpit-fragment="4">Have addresses so they can communicate with each other</li>
+<li>Ability to receive and send messages asynchornously using mailboxes</li>
+<li>Internal state that only the owner actor can mutate</li>
+<li>It can create new actors</li>
+<li>Have addresses so they can communicate with each other</li>
 </ul>
 <p>Popular implementation of the Actor Model is present on Erlang/Elixir (through Processes) and Akka for the JVM.</p>
 </section>
@@ -234,16 +235,16 @@
 <p>Actors can communicate with other ones by sending or receving messages. As long as the Actor is physically reachable, they can do so.</p>
 <p>This enable us to distribute Actors across the internet creating a web of working nodes that behave as one, making scaling more sane.</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-marpit-fragments="3" data-class="invert" class="invert" style="--class:invert;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-class="invert" class="invert" style="--class:invert;">
 <h1>Design Patterns</h1>
 <p>Design Patterns are suggested solutions to common problems in software development.</p>
 <p>They are separate in categories that aim to solve specific issues.</p>
 <p>It is heavily influenced by Object-Oriented programming and most of its concepts are focusing on this paradigm.</p>
 <p>There are a lot of Design Patterns and they are usually divided into 3 categories:</p>
 <ul>
-<li data-marpit-fragment="1">Creational Patterns</li>
-<li data-marpit-fragment="2">Structural Patterns</li>
-<li data-marpit-fragment="3">Behavioral Patterns</li>
+<li>Creational Patterns</li>
+<li>Structural Patterns</li>
+<li>Behavioral Patterns</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-class="invert" class="invert" style="--class:invert;">
@@ -279,11 +280,11 @@
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-class="invert" class="invert" style="--class:invert;">
 <h1>Design Patterns</h1>
 <h2>Proxy (Structural Patterns)</h2>
-<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-keyword">class</span> RawWavToMp3Converter <span class="hljs-keyword">implements</span> Converter {
-    start(filePath: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> {
-      <span class="hljs-comment">// Do binary manipulation here in order to convert the file</span>
-    }
+<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">class</span> RawWavToMp3Converter <span class="hljs-keyword">implements</span> Converter {
+  start(filePath: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> {
+    <span class="hljs-comment">// Do binary manipulation here in order to convert the file</span>
   }
+}
 </span></span></foreignObject></svg></code></pre>
 <p>From design point-of-view, sometimes it's not a good idea to call this class directly, because other developers can misuse that or it needs to perform additional checks like access control, caching, etc.</p>
 </section>
@@ -291,15 +292,15 @@
 <h1>Design Patterns</h1>
 <h2>Proxy (Structural Patterns)</h2>
 <p>You create a Proxy class that will call the raw class' methods on your behalf adhering to the <strong>same interface.</strong></p>
-<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-keyword">class</span> ProxyWavToMp3Converter <span class="hljs-keyword">implements</span> Converter {
-    <span class="hljs-comment">/// ...</span>
-    start(filePath: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> {
-      <span class="hljs-keyword">if</span> (checkAccessControl() &amp;&amp; !isCached()) {
-        <span class="hljs-keyword">let</span> converter = <span class="hljs-keyword">new</span> RawWavToMp3Converter()
-        converter.start()
-      }
+<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">class</span> ProxyWavToMp3Converter <span class="hljs-keyword">implements</span> Converter {
+  <span class="hljs-comment">/// ...</span>
+  start(filePath: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">if</span> (checkAccessControl() &amp;&amp; !isCached()) {
+      <span class="hljs-keyword">let</span> converter = <span class="hljs-keyword">new</span> RawWavToMp3Converter();
+      converter.start();
     }
   }
+}
 </span></span></foreignObject></svg></code></pre>
 <p>That enable us to take advantage of many things like lazy initialization.</p>
 </section>
@@ -308,33 +309,33 @@
 <h2>Strategy (Behavioral Patterns)</h2>
 <p>Enable one to build a family of algorithms, put them into separated classes and make them interchangeable through their interfaces.</p>
 <p>Imagine this scenario:</p>
-<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-keyword">class</span> Currency {
-    convert(<span class="hljs-keyword">from</span>: <span class="hljs-built_in">string</span>, to: <span class="hljs-built_in">string</span>) {
-      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">from</span>.contains(<span class="hljs-string">&#x27;UGX&#x27;</span>) &amp;&amp; to.contains(<span class="hljs-string">&#x27;USD&#x27;</span>)) {
-        <span class="hljs-comment">// Do the math...</span>
-      }
+<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">class</span> Currency {
+  convert(<span class="hljs-keyword">from</span>: <span class="hljs-built_in">string</span>, to: <span class="hljs-built_in">string</span>) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">from</span>.contains(<span class="hljs-string">&#x27;UGX&#x27;</span>) &amp;&amp; to.contains(<span class="hljs-string">&#x27;USD&#x27;</span>)) {
+      <span class="hljs-comment">// Do the math...</span>
     }
   }
+}
 </span></span></foreignObject></svg></code></pre>
 <p>Soon this function is going to be bloated and hard to maintain.</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-class="invert" class="invert" style="--class:invert;">
 <h1>Design Patterns</h1>
 <h2>Strategy (Behavioral Patterns)</h2>
-<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-keyword">interface</span> CurrencyCalculator {
-    convert(<span class="hljs-keyword">from</span>: <span class="hljs-built_in">string</span>, to: <span class="hljs-built_in">string</span>)
+<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">interface</span> CurrencyCalculator {
+  convert(<span class="hljs-keyword">from</span>: <span class="hljs-built_in">string</span>, to: <span class="hljs-built_in">string</span>);
+}
+
+<span class="hljs-keyword">class</span> Currency {
+  <span class="hljs-keyword">private</span> strategy: CurrencyCalculator;
+  setStrategy(strategy: CurrencyCalculator) {
+    <span class="hljs-built_in">this</span>.strategy = strategy;
   }
 
-  <span class="hljs-keyword">class</span> Currency {
-    <span class="hljs-keyword">private</span> strategy: CurrencyCalculator
-    setStrategy(strategy: CurrencyCalculator) {
-      <span class="hljs-built_in">this</span>.strategy = strategy
-    }
-
-    doConvertion() {
-      <span class="hljs-built_in">this</span>.strategy.convert()
-    }
+  doConvertion() {
+    <span class="hljs-built_in">this</span>.strategy.convert();
   }
+}
 </span></span></foreignObject></svg></code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-class="invert" class="invert" style="--class:invert;">
@@ -348,46 +349,46 @@
 <p>Ability to define a skeleton of an algorithm in a superclass so the inherited ones can implement the specific parts.</p>
 <p>In most OOP languages this pattern implies the usage of an <strong>abstract class</strong>. Let's check what it is first</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-marpit-fragments="3" data-class="invert" class="invert" style="--class:invert;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-class="invert" class="invert" style="--class:invert;">
 <h1>Design Patterns</h1>
 <h2>Template Method (Behavioral Patterns)</h2>
 <h3>Abstract Classes</h3>
 <ul>
-<li data-marpit-fragment="1">Can't be instantiated directly. Only it's subclasses</li>
-<li data-marpit-fragment="2">It defines methods contracts</li>
-<li data-marpit-fragment="3">Unlike Interfaces, it can have methods implementation</li>
+<li>Can't be instantiated directly. Only it's subclasses</li>
+<li>It defines methods contracts</li>
+<li>Unlike Interfaces, it can have methods implementation</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-class="invert" class="invert" style="--class:invert;">
 <h1>Design Patterns</h1>
 <h2>Template Method (Behavioral Patterns)</h2>
-<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> Wallet {
-    pay(amount: <span class="hljs-built_in">number</span>) {
-      <span class="hljs-keyword">if</span> (hasBalance(amount) &amp;&amp; is2FA()) {
-        <span class="hljs-comment">// Complete the transaction</span>
-      }
+<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> Wallet {
+  pay(amount: <span class="hljs-built_in">number</span>) {
+    <span class="hljs-keyword">if</span> (hasBalance(amount) &amp;&amp; is2FA()) {
+      <span class="hljs-comment">// Complete the transaction</span>
     }
-
-    <span class="hljs-comment">// checks balance</span>
-    <span class="hljs-keyword">abstract</span> hasBalance(amount: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span>
-    <span class="hljs-comment">// check if user is authorized by 2FA method</span>
-    <span class="hljs-keyword">abstract</span> is2FA(): <span class="hljs-built_in">boolean</span>
   }
+
+  <span class="hljs-comment">// checks balance</span>
+  <span class="hljs-keyword">abstract</span> hasBalance(amount: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span>;
+  <span class="hljs-comment">// check if user is authorized by 2FA method</span>
+  <span class="hljs-keyword">abstract</span> is2FA(): <span class="hljs-built_in">boolean</span>;
+}
 </span></span></foreignObject></svg></code></pre>
 <p>Depending on wallet's type we can have different ways to check the balance or if the user is authenticated. So in our <code>pay</code> method we create a template algorithm that inherited classes will have to fill the blanks (AKA abstract methods)</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-class="invert" class="invert" style="--class:invert;">
 <h1>Design Patterns</h1>
 <h2>Template Method (Behavioral Patterns)</h2>
-<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-keyword">class</span> BitcoinWallet <span class="hljs-keyword">extends</span> Wallet {
-    hasBalance(amount: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span> {
-      <span class="hljs-comment">// Check on the keychain, blockchain, etc</span>
-    }
-
-    is2FA(): <span class="hljs-built_in">boolean</span> {
-      <span class="hljs-comment">// Check if the user is using some sort of 2-factor authentication.</span>
-    }
+<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">class</span> BitcoinWallet <span class="hljs-keyword">extends</span> Wallet {
+  hasBalance(amount: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span> {
+    <span class="hljs-comment">// Check on the keychain, blockchain, etc</span>
   }
+
+  is2FA(): <span class="hljs-built_in">boolean</span> {
+    <span class="hljs-comment">// Check if the user is using some sort of 2-factor authentication.</span>
+  }
+}
 </span></span></foreignObject></svg></code></pre>
 <p>When we call <code>pay</code> method on this class, we will have the proper verification and transaction made without having to specify how to pay as this is already established on the parent abstract class.</p>
 </section>
@@ -398,19 +399,19 @@
 <p>The developer starts implementing the algorithm until all test cases are successful.</p>
 <p>From this point on, we are safe to do any refactoring or code style adjustments may fit.</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-marpit-fragments="5" data-class="invert" class="invert" style="--class:invert;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-class="invert" class="invert" style="--class:invert;">
 <h1>Testing</h1>
 <h3>TDD (Test-Driven Development)</h3>
 <p>Pros:</p>
 <ul>
-<li data-marpit-fragment="1">Upfront code designing, expectations and interface are clear</li>
-<li data-marpit-fragment="2">Once is done, you don't need to go back to implement any test because they already exist</li>
-<li data-marpit-fragment="3">Great to use with simple or pure functions</li>
+<li>Upfront code designing, expectations and interface are clear</li>
+<li>Once is done, you don't need to go back to implement any test because they already exist</li>
+<li>Great to use with simple or pure functions</li>
 </ul>
 <p>Cons:</p>
 <ul>
-<li data-marpit-fragment="4">Tests beyond unit testing becomes harder to write</li>
-<li data-marpit-fragment="5">Paradigm shift: required the team to buy into</li>
+<li>Tests beyond unit testing becomes harder to write</li>
+<li>Paradigm shift: required the team to buy into</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-class="invert" class="invert" style="--class:invert;">
@@ -447,7 +448,7 @@
     <span class="hljs-keyword">do</span>
       {<span class="hljs-symbol">:ok</span>, flight, payment_info}
     else
-      {<span class="hljs-symbol">:email_error</span>, reason} -&gt; <span class="hljs-comment"># Passenger booked the flight </span>
+      {<span class="hljs-symbol">:email_error</span>, reason} -&gt; <span class="hljs-comment"># Passenger booked the flight</span>
       <span class="hljs-comment"># but for some reason didn&#x27;t receive the email.</span>
       {_, reason} -&gt; <span class="hljs-comment"># Passenger didn&#x27;t book the flight</span>
     <span class="hljs-keyword">end</span>
@@ -455,6 +456,274 @@
 </span></span></foreignObject></svg></code></pre>
 <p>Imagine you have a public function that does several things inside of it, including to have side-effects (HTTP, I/O, etc).</p>
 </section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-class="invert" class="invert" style="--class:invert;">
+<h1>Testing</h1>
+<h2>Why do we mock?</h2>
+<p>We don't mock because we want to know if the function is working on production, but rather to know if our expectations still the same and to prevent runtime errors.</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-class="invert" class="invert" style="--class:invert;">
+<h1>Domain-Driven Design (DDD)</h1>
+<p>Concept that aims to model an application's code using the business language rather than generic nomenclature.</p>
+<p>Example, an application that lets investors find companies to invest.</p>
+<p>non-DDD:</p>
+<pre><code class="language-elixir"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-class"><span class="hljs-keyword">defmodule</span> <span class="hljs-title">MyApp.User</span></span> <span class="hljs-keyword">do</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">transfer_money</span></span>(company_id) <span class="hljs-keyword">do</span>
+      <span class="hljs-comment"># ...</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-class="invert" class="invert" style="--class:invert;">
+<h1>Domain-Driven Design (DDD)</h1>
+<p>DDD:</p>
+<pre><code class="language-elixir"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-class"><span class="hljs-keyword">defmodule</span> <span class="hljs-title">MyApp.Investor</span></span> <span class="hljs-keyword">do</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">invest</span></span>(company_id) <span class="hljs-keyword">do</span>
+      <span class="hljs-comment"># ...</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-class="invert" class="invert" style="--class:invert;">
+<h1>Domain-Driven Design (DDD)</h1>
+<p>Pros:</p>
+<ul>
+<li>Business team and developers speak the same language</li>
+<li>As a consequence, this approach forces the dev team to fully understand the business' rules</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>If the business pivoted and some entities drastically changes, the code's artefacts may have to be renamed or repurposed.</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-class="invert" class="invert" style="--class:invert;">
+<h1>Object-oriented vs Functional</h1>
+<p>First of all, there is no silver bullet.</p>
+<p>That said, let's see the characteristics of both</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-class="invert" class="invert" style="--class:invert;">
+<h1>Object-oriented vs Functional</h1>
+<h2>Object-oriented Programming (OOP)</h2>
+<ul>
+<li>Behavior built over class inheritance</li>
+<li>Hierarchy-based</li>
+<li>Functions (AKA methods) have access to outer scope</li>
+<li>State mutalibility</li>
+<li>Necessity to instantiate classes</li>
+<li>Reference passing</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-class="invert" class="invert" style="--class:invert;">
+<h1>Object-oriented vs Functional</h1>
+<h2>Functional Programming (FP)</h2>
+<ul>
+<li>Build behavior over function composition</li>
+<li>Functions have no access to outer scope</li>
+<li>Try to follow function purity principle as much as possible</li>
+<li>Therefore, no state mutation</li>
+<li>Ability to have higher-order functions</li>
+<li>No reference passing</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-class="invert" class="invert" style="--class:invert;">
+<h1>Common web vulnerabilities</h1>
+<h2>SQL Injection</h2>
+<p>It aims to run an arbitrary SQL query on the database through an exploitation of the software design.</p>
+<p>Let's say there is a website that let you log into an account.</p>
+<p>We could assume that in some moment the backend code will run a verification query on the database more or less like this:</p>
+<pre><code class="language-postgresql"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> <span class="hljs-built_in">public</span>.users <span class="hljs-keyword">where</span> username = <span class="hljs-string">&#x27;&amp;1&#x27;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">password</span> = <span class="hljs-string">&#x27;&amp;2&#x27;</span>
+</span></span></foreignObject></svg></code></pre>
+<p>Where &amp;1 and &amp;2 are values sent from the front-end.</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-class="invert" class="invert" style="--class:invert;">
+<h1>Common web vulnerabilities</h1>
+<h2>SQL Injection</h2>
+<p>Instead of passing a password, I can try to pass a malicious query.</p>
+<p>So my password is like this: <code>'; delete table public.users--</code></p>
+<pre><code class="language-postgresql"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  <span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> <span class="hljs-built_in">public</span>.users <span class="hljs-keyword">where</span> username = <span class="hljs-string">&#x27;&amp;1&#x27;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">password</span> = <span class="hljs-string">&#x27;&#x27;</span>; <span class="hljs-keyword">delete</span> <span class="hljs-keyword">table</span> <span class="hljs-built_in">public</span>.users<span class="hljs-comment">--&#x27;</span>
+</span></span></foreignObject></svg></code></pre>
+<p>For databases that enable multiline command, this trick can be done and end up performing two queries.</p>
+<h3>How to solve that</h3>
+<ul>
+<li>Either by treating every incoming data as untrusted, making proper data sanitation.</li>
+<li>Or having prepared SQL statements</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-class="invert" class="invert" style="--class:invert;">
+<h1>Common web vulnerabilities</h1>
+<h2>XSS (Cross-site Script)</h2>
+<p>Exploit that enables one to send data to other users that is supposed to be rendered but ends up being executed.</p>
+<p>Say we have an HTML form and a simple webserver that receive this information an display it on the page, pretty much as a chat application.</p>
+<p>Instead of sending &quot;Hi! How are you?&quot; in the chat textbox, what about...</p>
+<pre><code class="language-html"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  alert(<span class="hljs-string">&#x27;Hey! How are you?&#x27;</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-class="invert" class="invert" style="--class:invert;">
+<h1>Common web vulnerabilities</h1>
+<h2>XSS (Cross-site Script)</h2>
+<p>If the dialog appears, the website is exploitable via XSS.</p>
+<p>So you can do whatever you want. From a dummy script like this to hijacking the user session and sending it to an external server through HXR.</p>
+<h3>How to solve that</h3>
+<ul>
+<li>By escaping especial characters like <code>&lt;</code>, <code>&gt;</code> when receiving data from the server. That will disable the ability to forge a script tag, for example.</li>
+<li>By validating all input the server is going to receive and possibly sanitize that.</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-class="invert" class="invert" style="--class:invert;">
+<h1>Common web vulnerabilities</h1>
+<h2>CSRF (Cross-site Request Forgery)</h2>
+<p>Imagine you are logged-in in a bank site. This bank website is built in a way that transfering money through their API is as simple as this:</p>
+<pre><code class="language-http"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  GET
+  https://bank.com/transfer?accountno=1&amp;amount=1000
+  cookie: co01ab016c8bf012cb83
+</span></span></foreignObject></svg></code></pre>
+<p>If we manage to create a page that makes the user clink in a modified link like this:</p>
+<pre><code class="language-html"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://bank.com/transfer?accountno=MY_ACCOUNT&amp;amount=1000&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</span></span></foreignObject></svg></code></pre>
+<p>The request will be successful because the browser automatically appends the cookies when doing requests, therefore, I can make you transfer money to my account.</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-class="invert" class="invert" style="--class:invert;">
+<h1>Common web vulnerabilities</h1>
+<h2>CSRF (Cross-site Request Forgery)</h2>
+<h3>How to prevent that</h3>
+<ul>
+<li>Request an extra layer of authentication/verification when doing sensitive actions, like 2FA, captcha, etc</li>
+<li>Use another authentication medium like Local Storage. But take especial attention because Local Storage can be vulnerable to XSS attacks.</li>
+<li>Use Anti-CSRF</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-class="invert" class="invert" style="--class:invert;">
+<h1>Common services used for development</h1>
+<ul>
+<li>PostgreSQL for relational database</li>
+<li>Redis for caching and pub/sub mechanism</li>
+<li>RabbitMQ for message exchange between systems using queues</li>
+<li>Kafka for message exchange with storage abilities</li>
+<li>AWS for managing comprehensive solutions for cloud.
+<ul>
+<li>S3 for file storage</li>
+<li>CodeDeploy to listen to changes on repos and trigger some action like a deployment</li>
+<li>SQS queue solution</li>
+<li>List goes on...</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-class="invert" class="invert" style="--class:invert;">
+<h1>2077's JavaScript</h1>
+<h2>Optional Chain Operator</h2>
+<p>Before:</p>
+<pre><code class="language-javascript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">if</span> (myObj.name &amp;&amp; myObj.name.lastName) {
+  <span class="hljs-keyword">return</span> myObj.name.lastName;
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;No last name&#x27;</span>;
+}
+</span></span></foreignObject></svg></code></pre>
+<p>Now:</p>
+<pre><code class="language-javascript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">return</span> myObj.name?.lastName || <span class="hljs-string">&#x27;No last name&#x27;</span>;
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="50" data-class="invert" class="invert" style="--class:invert;">
+<h1>2077's JavaScript</h1>
+<h2>Rest Properties</h2>
+<p>Enable one to specify what properties to get back separately and all the rest into a separate variable.</p>
+<pre><code class="language-javascript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">const</span> { response, ...rest } = { <span class="hljs-attr">response</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">headers</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">cache</span>: <span class="hljs-number">3</span> };
+<span class="hljs-built_in">console</span>.log(response); <span class="hljs-comment">// 1</span>
+<span class="hljs-built_in">console</span>.log(rest); <span class="hljs-comment">// { headers: 2, cache: 3 }</span>
+</span></span></foreignObject></svg></code></pre>
+<p>Work both for objects and arrays.</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="51" data-class="invert" class="invert" style="--class:invert;">
+<h1>2077's JavaScript</h1>
+<h2>Spread Properties</h2>
+<p>Enable one to merge properties of an object into another. This is also a primitive form of pattern matching.</p>
+<pre><code class="language-javascript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">const</span> { response, ...rest } = { <span class="hljs-attr">response</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">headers</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">cache</span>: <span class="hljs-number">3</span> };
+<span class="hljs-keyword">const</span> newHeader = { <span class="hljs-attr">headers</span>: <span class="hljs-number">10</span> };
+<span class="hljs-keyword">const</span> newObj = { response, ...newHeader };
+<span class="hljs-built_in">console</span>.log(newObj); <span class="hljs-comment">// { response: 1, headers: 10 }</span>
+</span></span></foreignObject></svg></code></pre>
+<p>Work both for objects and arrays.</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="52" data-class="invert" class="invert" style="--class:invert;">
+<h1>2077's JavaScript</h1>
+<h2>Nullish Coalescing operator</h2>
+<p>Ability to check if a value is only <code>undefined</code> or <code>null</code> using <code>??</code> operator, being true, it uses the right-hand value.</p>
+<pre><code class="language-javascript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">const</span> result = <span class="hljs-literal">undefined</span>;
+<span class="hljs-built_in">console</span>.log(result ?? <span class="hljs-string">&#x27;No value&#x27;</span>);
+</span></span></foreignObject></svg></code></pre>
+<p>It is different from <code>||</code> with checks for falsy values (empty strings, <code>0</code>, <code>false</code>, <code>null</code> and <code>undefined</code>)</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="53" data-class="invert" class="invert" style="--class:invert;">
+<h1>2077's JavaScript</h1>
+<h2>Numeric Separator</h2>
+<p>It makes easier to separate numbers.</p>
+<pre><code class="language-javascript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-built_in">console</span>.log(<span class="hljs-number">100</span>_000); <span class="hljs-comment">// 100000</span>
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="54" data-class="invert" class="invert" style="--class:invert;">
+<h1>2077's JavaScript</h1>
+<h2>The future is here</h2>
+<p>There is a Technical Commitee that organizes, discuss and implement all JavaScript's new features.</p>
+<p>It is open-sourced and you can check the next steps here:</p>
+<p><a href="https://github.com/tc39/proposals">https://github.com/tc39/proposals</a></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="55" data-class="invert" class="invert" style="--class:invert;">
+<h1>Algorithms</h1>
+<h2>Fizz Buzz</h2>
+<p>Classic code assignment given to candidates. Every number given to a function that is divisible by 3, output <code>Fizz</code>. If divisible by 5, output <code>Buzz</code>.</p>
+<p>An naive implementation looks more or less like this</p>
+<pre><code class="language-javascript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">if</span> (number % <span class="hljs-number">3</span> === <span class="hljs-number">0</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Fizz&#x27;</span>;
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (number % <span class="hljs-number">5</span> === <span class="hljs-number">0</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Buzz&#x27;</span>;
+}
+</span></span></foreignObject></svg></code></pre>
+<p>That works pretty well.</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="56" data-class="invert" class="invert" style="--class:invert;">
+<h1>Algorithms</h1>
+<h2>Fizz Buzz</h2>
+<p>If a new requirement comes in, like if it has to be divisible by both, output <code>FizzBuzz</code>.</p>
+<pre><code class="language-javascript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">if</span> (number % <span class="hljs-number">3</span> === <span class="hljs-number">0</span> &amp;&amp; number &amp;&amp; <span class="hljs-number">5</span> === <span class="hljs-number">0</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;FizzBuzz&#x27;</span>;
+}
+<span class="hljs-keyword">if</span> (number % <span class="hljs-number">3</span> === <span class="hljs-number">0</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Fizz&#x27;</span>;
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (number % <span class="hljs-number">5</span> === <span class="hljs-number">0</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Buzz&#x27;</span>;
+}
+</span></span></foreignObject></svg></code></pre>
+<p>This seems a bit repetitive, for sure there are better ways to solve this.</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="57" data-class="invert" class="invert" style="--class:invert;">
+<h1>Algorithms</h1>
+<h2>Fizz Buzz</h2>
+<p>We could use string concatenation to solve that by not having <code>else if</code> statements, forcing the program flow to go through all valid cases, concatenating the string to possibly form <code>FizzBuzz</code>. But we coudl go beyond that.</p>
+<p>Let's use a technique known as hash maps.</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="58" data-class="invert" class="invert" style="--class:invert;">
+<h1>Algorithms</h1>
+<h2>Fizz Buzz</h2>
+<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">const</span> possibleOutcomes = {
+  <span class="hljs-number">3</span>: <span class="hljs-keyword">type</span>.Fizz,
+  <span class="hljs-number">5</span>: <span class="hljs-keyword">type</span>.Buzz,
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> calc = (n: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">string</span> | <span class="hljs-function"><span class="hljs-params">number</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> (
+    <span class="hljs-built_in">Object</span>.keys(possibleOutcomes)
+      .map(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> <span class="hljs-built_in">parseInt</span>(x))
+      .reduce(<span class="hljs-function">(<span class="hljs-params">prev, current</span>) =&gt;</span> {
+        <span class="hljs-keyword">return</span> (
+          prev + (n % current === <span class="hljs-number">0</span> ? possibleOutcomes[current].toString() : <span class="hljs-string">&#x27;&#x27;</span>)
+        );
+      }, <span class="hljs-string">&#x27;&#x27;</span>) || n
+  );
+};
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="59" data-class="invert" class="invert" style="--class:invert;"></section>
 <script>!function(){"use strict";let t=void 0;function e(e){let r=!1;Array.from(document.querySelectorAll("svg[data-marpit-svg]"),i=>{const{children:o,clientHeight:n,clientWidth:a,viewBox:s}=i;i.style.transform||(i.style.transform="translateZ(0)");const l=e||window!==window.parent&&window.parent.marpitSVGPolyfillZoomFactor||i.currentScale||1;t!==l&&(t=l,r=l);const c=s.baseVal.width/l,d=s.baseVal.height/l,p=Math.min(n/d,a/c);for(let t=0;t<o.length;t+=1){const{style:e}=o[t].firstChild;e.position||(e.position="fixed"),e.transformOrigin||(e.transformOrigin="0 0"),e.transform=`scale(${p}) translateZ(0)`}}),!1!==r&&Object.defineProperty(window,"marpitSVGPolyfillZoomFactor",{configurable:!0,value:r})}const r=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};function i(t=!0){for(const t of"Apple Computer, Inc."===navigator.vendor?[e]:[])t();Array.from(document.querySelectorAll('svg[data-marp-fitting="svg"]'),t=>{var e;const i=t.firstChild,o=i.firstChild,{scrollWidth:n,scrollHeight:a}=o;let s,l=1;if(t.hasAttribute("data-marp-fitting-code")&&(s=null===(e=t.parentElement)||void 0===e?void 0:e.parentElement),t.hasAttribute("data-marp-fitting-math")&&(s=t.parentElement),s){const t=getComputedStyle(s),e=Math.ceil(s.clientWidth-parseFloat(t.paddingLeft||"0")-parseFloat(t.paddingRight||"0"));e&&(l=e)}const c=Math.max(n,l),d=Math.max(a,1),p=`0 0 ${c} ${d}`;r(i,"width",""+c),r(i,"height",""+d),r(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),r(t,"viewBox",p)&&t.classList.toggle("__reflow__")}),t&&window.requestAnimationFrame(()=>i(t))}!function(){if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");window.marpCoreBrowserScript?console.warn("Marp Core's browser script has already executed."):(Object.defineProperty(window,"marpCoreBrowserScript",{value:!0}),i())}()}();
 </script></foreignObject></svg></div><script>!function(){"use strict";var e=function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),a=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,(function(e){return"SCRIPT"!==e.nodeName})),s={},i=function(e,t){return(t=t||{}).index=a.indexOf(e),t.slide=e,t},o=function(e,t){s[e]=(s[e]||[]).filter((function(e){return e!==t}))},l=function(e,t){return(s[e]||[]).reduce((function(e,n){return e&&!1!==n(t)}),!0)},c=function(e,t){a[e]&&(n&&l("deactivate",i(n,t)),n=a[e],l("activate",i(n,t)))},d=function(e,t){var r=a.indexOf(n)+e;l(e>0?"next":"prev",i(n,t))&&c(r,t)},u={off:o,on:function(e,t){return(s[e]||(s[e]=[])).push(t),o.bind(null,e,t)},fire:l,slide:function(e,t){if(!arguments.length)return a.indexOf(n);l("slide",i(a[e],t))&&c(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:a,destroy:function(e){l("destroy",i(n,e)),s={}}};return(t||[]).forEach((function(e){e(u)})),n||c(0),u};function t(e){e.parent.classList.add("bespoke-marp-parent"),e.slides.forEach(e=>e.classList.add("bespoke-marp-slide")),e.on("activate",t=>{const n=t.slide,r=!n.classList.contains("bespoke-marp-active");e.slides.forEach(e=>{e.classList.remove("bespoke-marp-active"),e.setAttribute("aria-hidden","true")}),n.classList.add("bespoke-marp-active"),n.removeAttribute("aria-hidden"),r&&(n.classList.add("bespoke-marp-active-ready"),document.body.clientHeight,n.classList.remove("bespoke-marp-active-ready"))})}function n(e){let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],a=(r,a)=>{t=r,n=a,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const s=t<r||t===r&&n<=a;e.setAttribute("data-bespoke-marp-fragment",s?"active":"inactive"),t===r&&n===a?e.setAttribute("data-bespoke-marp-current-fragment","current"):e.removeAttribute("data-bespoke-marp-current-fragment")})}),e.fragmentIndex=a;const s={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:a};e.fire("fragment",s)};e.on("next",({fragment:s=!0})=>{if(s){if(r(1))return a(t,n+1),!1;const s=t+1;e.fragments[s]&&a(s,0)}else{const r=e.fragments[t].length;if(n+1<r)return a(t,r-1),!1;const s=e.fragments[t+1];s&&a(t+1,s.length-1)}}),e.on("prev",({fragment:s=!0})=>{if(r(-1)&&s)return a(t,n-1),!1;const i=t-1;e.fragments[i]&&a(i,e.fragments[i].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const a=e.fragments[t];if(a){const{length:e}=a;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}a(t,r)}),a(0,0)}var r=function(e,t,n){return e(n={path:t,exports:{},require:function(e,t){return function(){throw new Error("Dynamic requires are not currently supported by @rollup/plugin-commonjs")}(null==t&&n.path)}},n.exports),n.exports}((function(e){
 /*!

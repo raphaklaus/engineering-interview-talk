@@ -970,3 +970,71 @@ export const calc = (n: number): string | number => {
 ```
 
 ---
+
+# Algorithms
+
+## Big-O notation
+
+> O(N) describes how many steps an algorithm takes based on the number of elements that it is acted upon.
+> https://towardsdatascience.com/
+
+---
+
+# Algorithms
+
+## Big-O notation: Constant
+
+```javascript
+array[0]; // same time complexity
+array[1000]; // same time complexity
+```
+
+It doesn't matter the size of the input, the complexity is constant.
+
+---
+
+# Algorithms
+
+## Big-O notation: Linear
+
+```javascript
+for (let i = 0; i < 10; i++) {
+  console.log(i); // Complexity x
+}
+
+for (let i = 0; i < 1000; i++) {
+  console.log(i); // Complexity 10x
+}
+```
+
+According to the input, it grow linearly.
+
+---
+
+# Algorithms
+
+## Big-O notation: Quadratic
+
+```javascript
+const hasDuplicates = function (array) {
+  for (let i = 0; i < array.length; i++) {
+    let item = array[i];
+    if (array.slice(i + 1).indexOf(item) !== -1) {
+      return true;
+    }
+  }
+  return false;
+};
+```
+
+Here we have quadratic complexity since we are performing one loop to check for every input and doing another look-up, using the function `indexOf(item)`.
+
+---
+
+# Soft questions
+
+- Have you worked with Scrum methodologies?
+- Fast deliver or slower one with more quality?
+- TDD or normal testing?
+- How do you code review your teammate's code?
+- The company have a legacy system that works well for the company but hard to maintain. What suits better? Create a new system from scratch or keep maintaining the legacy one?
