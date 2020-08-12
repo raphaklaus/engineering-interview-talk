@@ -723,7 +723,60 @@ areaFormatter(area);
 };
 </span></span></foreignObject></svg></code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="59" data-class="invert" class="invert" style="--class:invert;"></section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="59" data-class="invert" class="invert" style="--class:invert;">
+<h1>Algorithms</h1>
+<h2>Big-O notation</h2>
+<blockquote>
+<p>O(N) describes how many steps an algorithm takes based on the number of elements that it is acted upon.<br />
+<a href="https://towardsdatascience.com/">https://towardsdatascience.com/</a></p>
+</blockquote>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="60" data-class="invert" class="invert" style="--class:invert;">
+<h1>Algorithms</h1>
+<h2>Big-O notation: Constant</h2>
+<pre><code class="language-javascript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>array[<span class="hljs-number">0</span>]; <span class="hljs-comment">// same time complexity</span>
+array[<span class="hljs-number">1000</span>]; <span class="hljs-comment">// same time complexity</span>
+</span></span></foreignObject></svg></code></pre>
+<p>It doesn't matter the size of the input, the complexity is constant.</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="61" data-class="invert" class="invert" style="--class:invert;">
+<h1>Algorithms</h1>
+<h2>Big-O notation: Linear</h2>
+<pre><code class="language-javascript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+  <span class="hljs-built_in">console</span>.log(i); <span class="hljs-comment">// Complexity x</span>
+}
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000</span>; i++) {
+  <span class="hljs-built_in">console</span>.log(i); <span class="hljs-comment">// Complexity 10x</span>
+}
+</span></span></foreignObject></svg></code></pre>
+<p>According to the input, it grow linearly.</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="62" data-class="invert" class="invert" style="--class:invert;">
+<h1>Algorithms</h1>
+<h2>Big-O notation: Quadratic</h2>
+<pre><code class="language-javascript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">const</span> hasDuplicates = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">array</span>) </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; array.length; i++) {
+    <span class="hljs-keyword">let</span> item = array[i];
+    <span class="hljs-keyword">if</span> (array.slice(i + <span class="hljs-number">1</span>).indexOf(item) !== <span class="hljs-number">-1</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+};
+</span></span></foreignObject></svg></code></pre>
+<p>Here we have quadratic complexity since we are performing one loop to check for every input and doing another look-up, using the function <code>indexOf(item)</code>.</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="63" data-class="invert" class="invert" style="--class:invert;">
+<h1>Soft questions</h1>
+<ul>
+<li>Have you worked with Scrum methodologies?</li>
+<li>Fast deliver or slower one with more quality?</li>
+<li>TDD or normal testing?</li>
+<li>How do you code review your teammate's code?</li>
+<li>The company have a legacy system that works well for the company but hard to maintain. What suits better? Create a new system from scratch or keep maintaining the legacy one?</li>
+</ul>
+</section>
 <script>!function(){"use strict";let t=void 0;function e(e){let r=!1;Array.from(document.querySelectorAll("svg[data-marpit-svg]"),i=>{const{children:o,clientHeight:n,clientWidth:a,viewBox:s}=i;i.style.transform||(i.style.transform="translateZ(0)");const l=e||window!==window.parent&&window.parent.marpitSVGPolyfillZoomFactor||i.currentScale||1;t!==l&&(t=l,r=l);const c=s.baseVal.width/l,d=s.baseVal.height/l,p=Math.min(n/d,a/c);for(let t=0;t<o.length;t+=1){const{style:e}=o[t].firstChild;e.position||(e.position="fixed"),e.transformOrigin||(e.transformOrigin="0 0"),e.transform=`scale(${p}) translateZ(0)`}}),!1!==r&&Object.defineProperty(window,"marpitSVGPolyfillZoomFactor",{configurable:!0,value:r})}const r=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};function i(t=!0){for(const t of"Apple Computer, Inc."===navigator.vendor?[e]:[])t();Array.from(document.querySelectorAll('svg[data-marp-fitting="svg"]'),t=>{var e;const i=t.firstChild,o=i.firstChild,{scrollWidth:n,scrollHeight:a}=o;let s,l=1;if(t.hasAttribute("data-marp-fitting-code")&&(s=null===(e=t.parentElement)||void 0===e?void 0:e.parentElement),t.hasAttribute("data-marp-fitting-math")&&(s=t.parentElement),s){const t=getComputedStyle(s),e=Math.ceil(s.clientWidth-parseFloat(t.paddingLeft||"0")-parseFloat(t.paddingRight||"0"));e&&(l=e)}const c=Math.max(n,l),d=Math.max(a,1),p=`0 0 ${c} ${d}`;r(i,"width",""+c),r(i,"height",""+d),r(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),r(t,"viewBox",p)&&t.classList.toggle("__reflow__")}),t&&window.requestAnimationFrame(()=>i(t))}!function(){if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");window.marpCoreBrowserScript?console.warn("Marp Core's browser script has already executed."):(Object.defineProperty(window,"marpCoreBrowserScript",{value:!0}),i())}()}();
 </script></foreignObject></svg></div><script>!function(){"use strict";var e=function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),a=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,(function(e){return"SCRIPT"!==e.nodeName})),s={},i=function(e,t){return(t=t||{}).index=a.indexOf(e),t.slide=e,t},o=function(e,t){s[e]=(s[e]||[]).filter((function(e){return e!==t}))},l=function(e,t){return(s[e]||[]).reduce((function(e,n){return e&&!1!==n(t)}),!0)},c=function(e,t){a[e]&&(n&&l("deactivate",i(n,t)),n=a[e],l("activate",i(n,t)))},d=function(e,t){var r=a.indexOf(n)+e;l(e>0?"next":"prev",i(n,t))&&c(r,t)},u={off:o,on:function(e,t){return(s[e]||(s[e]=[])).push(t),o.bind(null,e,t)},fire:l,slide:function(e,t){if(!arguments.length)return a.indexOf(n);l("slide",i(a[e],t))&&c(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:a,destroy:function(e){l("destroy",i(n,e)),s={}}};return(t||[]).forEach((function(e){e(u)})),n||c(0),u};function t(e){e.parent.classList.add("bespoke-marp-parent"),e.slides.forEach(e=>e.classList.add("bespoke-marp-slide")),e.on("activate",t=>{const n=t.slide,r=!n.classList.contains("bespoke-marp-active");e.slides.forEach(e=>{e.classList.remove("bespoke-marp-active"),e.setAttribute("aria-hidden","true")}),n.classList.add("bespoke-marp-active"),n.removeAttribute("aria-hidden"),r&&(n.classList.add("bespoke-marp-active-ready"),document.body.clientHeight,n.classList.remove("bespoke-marp-active-ready"))})}function n(e){let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],a=(r,a)=>{t=r,n=a,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const s=t<r||t===r&&n<=a;e.setAttribute("data-bespoke-marp-fragment",s?"active":"inactive"),t===r&&n===a?e.setAttribute("data-bespoke-marp-current-fragment","current"):e.removeAttribute("data-bespoke-marp-current-fragment")})}),e.fragmentIndex=a;const s={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:a};e.fire("fragment",s)};e.on("next",({fragment:s=!0})=>{if(s){if(r(1))return a(t,n+1),!1;const s=t+1;e.fragments[s]&&a(s,0)}else{const r=e.fragments[t].length;if(n+1<r)return a(t,r-1),!1;const s=e.fragments[t+1];s&&a(t+1,s.length-1)}}),e.on("prev",({fragment:s=!0})=>{if(r(-1)&&s)return a(t,n-1),!1;const i=t-1;e.fragments[i]&&a(i,e.fragments[i].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const a=e.fragments[t];if(a){const{length:e}=a;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}a(t,r)}),a(0,0)}var r=function(e,t,n){return e(n={path:t,exports:{},require:function(e,t){return function(){throw new Error("Dynamic requires are not currently supported by @rollup/plugin-commonjs")}(null==t&&n.path)}},n.exports),n.exports}((function(e){
 /*!
