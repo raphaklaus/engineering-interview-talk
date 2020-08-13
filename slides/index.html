@@ -174,7 +174,7 @@ areaFormatter(area);
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-class="invert" class="invert" style="--class:invert;">
 <h1>I - Interface Segregation Principle</h1>
 <p>Better:</p>
-<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">interface</span> RiderPayment {
+<pre><code class="language-typescript"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">interface</span> PaymentRider {
   sendCash(): <span class="hljs-built_in">void</span>;
 }
 
@@ -747,7 +747,7 @@ array[<span class="hljs-number">1000</span>]; <span class="hljs-comment">// same
 }
 
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000</span>; i++) {
-  <span class="hljs-built_in">console</span>.log(i); <span class="hljs-comment">// Complexity 10x</span>
+  <span class="hljs-built_in">console</span>.log(i); <span class="hljs-comment">// Complexity 100x</span>
 }
 </span></span></foreignObject></svg></code></pre>
 <p>According to the input, it grow linearly.</p>
