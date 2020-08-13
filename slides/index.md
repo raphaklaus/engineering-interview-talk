@@ -212,7 +212,7 @@ class Rider implements Payment {
 Better:
 
 ```typescript
-interface RiderPayment {
+interface PaymentRider {
   sendCash(): void;
 }
 
@@ -1003,7 +1003,7 @@ for (let i = 0; i < 10; i++) {
 }
 
 for (let i = 0; i < 1000; i++) {
-  console.log(i); // Complexity 10x
+  console.log(i); // Complexity 100x
 }
 ```
 
